@@ -47,11 +47,11 @@ infectedImg = loadImage("Infected.jpg")
 
 // For setting up
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(1000,900);
 
-bgScreen2 = createSprite(1000,200)
+bgScreen2 = createSprite(750,450)
 bgScreen2.addImage(bg2)
-bgScreen2.scale = 5
+bgScreen2.scale = 3
 //bgScreen2.velocityX = -5
 
 coronaGroup = new Group();
@@ -75,20 +75,20 @@ invisibleGround.visible = false
 InvPro = createSprite(-100000,450,10,100000000)
 InvPro.visible = false
 
-bg = createSprite(950,850)
+bg = createSprite(500,450)
 bg.addImage(bgImg)
-bg.scale = 1.4
+bg.scale = 0.75
 
 start = createSprite(width/2,height/2)
 start.addImage(startImg)
 start.scale = 1.5
 
-reset = createSprite(width/2,height/2)
+reset = createSprite(500,500)
 reset.addImage(resetImg)
 reset.scale = 1;
 reset.visible = false
 
-infected = createSprite(width/4,height/2)
+infected = createSprite(500,450)
 infected.addImage(infectedImg)
 infected.visible = false
 
@@ -99,7 +99,6 @@ function draw() {
   console.log(mouseY)
   drawSprites();
 
-console.log(mouseX)
 
   if(gameState === serve){
 
@@ -198,7 +197,7 @@ if(boy.isTouching(coronaGroup)){
 text("Protiens = " + Protiens,50,50)
 fill("red")
 text("Life = " + life,width/2,50)
-   // infected.visible = false
+    //infected.visible = true
     reset.visible = true
     Reset()
    
@@ -267,15 +266,14 @@ if(timerText > 0){
   }
    else if(gameState === End){
      if(life < 1){
-    textSize(25)
+    textSize(30)
     fill("red")
     strokeWeight(5)
-    text("YOU Lose 😯",width/2,height/4)
-    text("It won't Reset because You Lose Please reset this page",width/2,height/5)
+    text("YOU Lose 😯",450,450)
+    text("It won't Reset because You Lose Please reset this page",100,600)
 
      }
      reset.visible = true
-     //infected.visible = true
      boy.changeAnimation("collide",boy_Collided)
     bgScreen2.velocityX = 0
     boy.velocityY = 0
@@ -295,7 +293,6 @@ floorGroup.setLifetimeEach(-1)
 
 if(mousePressedOver(reset) || touches.length){
   Reset()
-  
 }
 
   }
@@ -345,7 +342,7 @@ function Objects(){
 
 // To display carona at random places
 if(frameCount % 60 === 0){
-corona = createSprite(1700,random(427,850))
+corona = createSprite(1010,random(427,850))
 corona.addImage(coronaImg)
 // corona.debug = true
 corona.scale = 0.2
@@ -356,7 +353,7 @@ coronaGroup.add(corona)
 
 
 if(frameCount % 500 ===0){
-floor = createSprite(1700,50,100,30)
+floor = createSprite(1000,50,100,30)
   floor.addImage(floorImage)
   floor.scale = 0.2
     floor.velocityX = -7
@@ -372,7 +369,7 @@ floor = createSprite(1700,50,100,30)
 
 // To display mask at random places
 if(frameCount % 779===0){                  
-  mask = createSprite(1700,random(427,850))
+  mask = createSprite(1000,random(427,850))
  mask.addImage(maskImg)
  mask.scale = 0.1
    mask.velocityX = -7
@@ -383,7 +380,7 @@ if(frameCount % 779===0){
 
 // To display sanitizers at random places
 if(frameCount % 843===0){
-  sanitizer = createSprite(1700,(427,850))
+  sanitizer = createSprite(1000,(427,850))
   sanitizer.addImage(sanitizerImg)
   sanitizer.scale = 0.3
   sanitizer.velocityX = -7
@@ -393,7 +390,7 @@ if(frameCount % 843===0){
 
 // To display vaccine at random places
 if(frameCount % 1599=== 0){
-  vaccine = createSprite(1700,(835,851))
+  vaccine = createSprite(1000,(835,851))
   vaccine.addImage(vaccineImg)
   vaccine.scale = 0.1
   vaccine.velocityX = -7
@@ -402,7 +399,7 @@ if(frameCount % 1599=== 0){
 
 
 if(frameCount % 555 === 0){
-  protien = createSprite(1700,random(835,851))
+  protien = createSprite(1000,random(835,851))
   protien.addImage(protienImg)
   protien.scale = 0.4
   protien.velocityX = -7
@@ -416,7 +413,6 @@ function Reset(){
   gameState = Play
   boy.changeAnimation("running",boy_running)
   reset.visible = false
-  
   /*life = life - 1
   Protiens = Protiens - 1*/
   bgScreen2.velocityX = -5
